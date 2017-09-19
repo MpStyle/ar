@@ -4,6 +4,14 @@ Async loading external JS files in 1.2 kB.
 
 [![Build Status](https://travis-ci.org/MpStyle/ar.svg?branch=master)](https://travis-ci.org/MpStyle/ar)
 
+## Install
+
+Use npm to install the library:
+
+```
+npm i -S mp-ar
+```
+
 ## Usages
 
 ### Javascript
