@@ -1,0 +1,1 @@
+export const dataTicketAttribute: string = 'data-ticket';

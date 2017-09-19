@@ -1,0 +1,7 @@
+node_modules
+.idea
+.vscode
+test/out
+.grunt
+package-lock.json
+_SpecRunner.html
