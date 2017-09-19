@@ -1,5 +1,5 @@
 {
-  "name": "ar",
+  "name": "mp-ar",
   "version": "1.0.0",
   "description": "Async Require",
   "main": "index.js",
