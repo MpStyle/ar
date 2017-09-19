@@ -8,7 +8,9 @@ module.exports = {
         },
         output: {
             filename: '[name].js',
-            path: __dirname + "/../dist/js"
+            path: __dirname + "/../dist/js",
+            libraryTarget: 'umd',
+            umdNamedDefine: true
         },
         resolve: {
             extensions: [".ts"]
@@ -35,59 +37,6 @@ module.exports = {
                         loader: 'ts-loader'
                     }
                 ]
-            }]
-        }
-    },
-    test: {
-        cache: true,
-        entry: {
-            appendScriptTag01: './test/ts/appendScriptTag01.Test.ts',
-            appendScriptTag02: './test/ts/appendScriptTag02.Test.ts',
-            areLoaded: './test/ts/areLoaded.Test.ts',
-            createTicket: './test/ts/createTicket.Test.ts',
-            callCallback: './test/ts/callCallback.Test.ts'
-        },
-        output: {
-            filename: '[name].js',
-            path: __dirname + "/../test/out"
-        },
-        externals: {
-            'cheerio': 'window'
-        },
-        resolve: {
-            extensions: ['.webpack.js', '.web.js', ".ts", ".js"]
-        },
-        devtool: 'inline-source-map',
-        module: {
-            rules: [{
-                test: /\.ts(x?)$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            "presets": "es2015"
-                        }
-                    },
-                    {
-                        loader: 'ts-loader'
-                    }
-                ]
-            }, {
-                test: /\.js$/,
-                exclude: /node_modules/,
-                use: [
-                    {
-                        loader: 'babel-loader',
-                        options: {
-                            "presets": "es2015"
-                        }
-                    }
-                ]
-            }, {
-                test: /\.js$/,
-                use: ["source-map-loader"],
-                enforce: "pre"
             }]
         }
     }

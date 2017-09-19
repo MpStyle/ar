@@ -1,5 +1,7 @@
 # AR - Async require
 
+Async loading external JS files in 1.2 kB.
+
 ## Usages
 ```js
 ar(['script.js', 'jquery.js'], ()=>{
@@ -7,5 +9,7 @@ ar(['script.js', 'jquery.js'], ()=>{
 });
 ```
 
-## Test
-Run 'npm test'
+## Notes
+
+Could it be an alternative to requirejs?
+I don't think so... or... yes, it is! ;P

@@ -1,43 +1,48 @@
-import { appendScriptTag } from "./appendScriptTag";
-import { importPropertiesMap, importStatusMap } from "./arStatus";
-import { ImportRequest } from "./arTypes";
-import { callCallback } from "./callCalback";
-import { createTicket } from "./createTicket";
-import { elementIsLoading } from "./elementIsLoading";
-
 /**
  * Entry point of the library.
  * 
- * @param src 
+ * @param srcs 
  * @param callback 
  */
-export const ar = (src: Array<string> | string, callback?: () => void): void => {
-    if (!Array.isArray(src)) {
-        src = [src];
+export const ar = (srcs: Array<string>, callback?: () => void): void => {
+    const callCallback = (srcs: Array<string>, callback: () => void): boolean => {
+        for (let i in srcs) {
+            if (downloaded.indexOf(srcs[i]) == -1) return false;
+        }
+
+        if (callback) {
+            callback();
+        }
+
+        return true;
     }
 
     // Are the sources already loaded by a previous execution of the function
-    if (callCallback(src, callback)) {
+    if (callCallback(srcs, callback)) {
         return;
     }
 
-    let ticket: string = createTicket(src);
-
-    importPropertiesMap[ticket] = {
-        callback: callback,
-        srcs: src
-    } as ImportRequest;
-
-    for (let i in src) {
-        let currentSrc: string = src[i];
-        let importStatus = importStatusMap[currentSrc];
+    for (let i in srcs) {
+        let src: string = srcs[i];
 
         // Check if the src have to be imported
-        let isLoaded: boolean = importStatus && (importStatus.isLoaded || importStatus.isLoading);
+        if (downloaded.indexOf(src) == -1) {
+            // Append script tag to body
+            const scriptTag = document.createElement('script');
 
-        if (!isLoaded) {
-            elementIsLoading(currentSrc);
-            appendScriptTag(currentSrc, ticket);
+            scriptTag.type = 'text/javascript';
+            scriptTag.async = true;
+            scriptTag.src = src;
+            scriptTag.onload = () => {
+                // set script status to isLoading
+                downloaded.push(src);
+
+                callCallback(srcs, callback);
+            };
+
+            document.getElementsByTagName('body')[0].appendChild(scriptTag);
         }
     }
 }
+
+const downloaded: Array<string> = [];
