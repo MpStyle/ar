@@ -28,3 +28,11 @@ ar(['script.js', 'jquery.js'], () => {
 
 Could it be an alternative to requirejs?
 I don't think so... or... yes, it is! ;P
+
+## Contributes
+
+The project is open to your contributes, clone it!
+
+Type `npm install` to download the dependencies.
+Type `npm test` to run the tests.
+Type `grunt` to compile the typescript code and to generate the ar.js file.

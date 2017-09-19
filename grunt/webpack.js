@@ -39,5 +39,33 @@ module.exports = {
                 ]
             }]
         }
+    },
+    test: {
+        cache: true,
+        entry: {
+            ar: './test/ts/ar.Test.ts'
+        },
+        output: {
+            filename: '[name].js',
+            path: __dirname + "/../test/out"
+        },
+        externals: {
+            'cheerio': 'window'
+        },
+        resolve: {
+            extensions: [".ts"]
+        },
+        devtool: 'inline-source-map',
+        module: {
+            rules: [{
+                test: /\.ts$/,
+                exclude: /node_modules/,
+                use: [
+                    {
+                        loader: 'ts-loader'
+                    }
+                ]
+            }]
+        }
     }
 };
