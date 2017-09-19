@@ -2,6 +2,8 @@
 
 Async loading external JS files in 1.2 kB.
 
+[![Build Status](https://travis-ci.org/MpStyle/ar.svg?branch=master)](https://travis-ci.org/MpStyle/ar)
+
 ## Usages
 
 ### Javascript
