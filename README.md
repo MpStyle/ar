@@ -32,9 +32,9 @@ Could it be an alternative to requirejs?
 
 I don't think so... or... yes, it is! ;P
 
-## Contributes
+## Contribute
 
-The project is open to your contributes, clone it!
+The project is open to your contributions, clone it!
 
 Type `npm install` to download the dependencies.
 
