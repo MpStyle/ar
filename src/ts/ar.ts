@@ -1,10 +1,18 @@
+export const ar_css = (srcs: Array<string>, callback?: () => void): void => {
+    ar_core('css', srcs, callback);
+}
+
+export const ar = (srcs: Array<string>, callback?: () => void): void => {
+    ar_core('js', srcs, callback);
+}
+
 /**
  * Entry point of the library.
  * 
  * @param srcs 
  * @param callback 
  */
-export const ar = (srcs: Array<string>, callback?: () => void): void => {
+const ar_core = (type: string, srcs: Array<string>, callback?: () => void): void => {
     const callCallback = (srcs: Array<string>, callback: () => void): boolean => {
         for (let i in srcs) {
             if (downloaded.indexOf(srcs[i]) == -1) return false;
@@ -27,20 +35,37 @@ export const ar = (srcs: Array<string>, callback?: () => void): void => {
 
         // Check if the src have to be imported
         if (downloaded.indexOf(src) == -1) {
-            // Append script tag to body
-            const scriptTag = document.createElement('script');
+            switch (type) {
+                case 'css':
+                    var linkTag = document.createElement('link');
+                    linkTag.rel = 'stylesheet';
+                    linkTag.href = src;
+                    linkTag.onload = () => {
+                        // set script status to isLoading
+                        downloaded.push(src);
 
-            scriptTag.type = 'text/javascript';
-            scriptTag.async = true;
-            scriptTag.src = src;
-            scriptTag.onload = () => {
-                // set script status to isLoading
-                downloaded.push(src);
+                        callCallback(srcs, callback);
+                    };
 
-                callCallback(srcs, callback);
-            };
+                    document.getElementsByTagName('body')[0].appendChild(linkTag);
+                    break;
+                case 'js':
+                    // Append script tag to body
+                    const scriptTag = document.createElement('script');
 
-            document.getElementsByTagName('body')[0].appendChild(scriptTag);
+                    scriptTag.type = 'text/javascript';
+                    scriptTag.async = true;
+                    scriptTag.src = src;
+                    scriptTag.onload = () => {
+                        // set script status to isLoading
+                        downloaded.push(src);
+
+                        callCallback(srcs, callback);
+                    };
+
+                    document.getElementsByTagName('body')[0].appendChild(scriptTag);
+                    break;
+            }
         }
     }
 }

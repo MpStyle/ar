@@ -1,13 +1,16 @@
 {
   "name": "mp-ar",
-  "version": "2.0.0",
-  "description": "Async Require",
-  "main": "index.js",
+  "version": "3.0.0",
+  "description": "Async Require. Load async JS and CSS file",
+  "keywords": [
+    "async", "javascript", "js", "css", "style", "require", "load"
+  ],
+  "main": "dist/js/ar.js",
   "scripts": {
     "test": "grunt test"
   },
-  "author": "",
-  "license": "Closed",
+  "author": "Michele Pagnin <pagnin.michele@gmail.com>",
+  "license": "LGPLv3",
   "dependencies": {
   },
   "devDependencies": {

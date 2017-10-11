@@ -43,7 +43,8 @@ module.exports = {
     test: {
         cache: true,
         entry: {
-            ar: './test/ts/ar.Test.ts'
+            ar: './test/ts/ar.Test.ts',
+            ar_css: './test/ts/ar_css.Test.ts'
         },
         output: {
             filename: '[name].js',

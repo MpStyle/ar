@@ -24,12 +24,9 @@ ar(['script.js', 'jquery.js'], function() {
 });
 ```
 
-### Typescript
-
-The library is write in TypeScript, so it can be used in a TS Project.
-
-```typescript
-ar(['script.js', 'jquery.js'], () => {
+You can also load css file:
+```javascript
+ar_css(['script.css', 'jquery.css'], function() {
     console.log('Write your code here');
 });
 ```
